@@ -1,0 +1,5 @@
+jdbc.url=jdbc:postgresql://localhost:5432/trainning
+jdbc.username=postgres
+jdbc.password=postgres
+
+jdbc.driverClassName=org.postgresql.Driver

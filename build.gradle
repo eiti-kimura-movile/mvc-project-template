@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
 apply plugin: 'war'
 
@@ -10,33 +11,64 @@ repositories {
 version = '1.0'
 
 jar {
-     manifest.attributes provider: 'Movile Treinamento'
+     manifest.attributes provider: 'Movile Project'
  }
 
 
 dependencies {
-    compile 'org.springframework:spring-context:4.0.0.RELEASE'
-    compile 'org.springframework:spring-core:4.0.0.RELEASE'
-    compile 'org.springframework:spring-jdbc:4.0.0.RELEASE'
-    compile 'org.springframework:spring-webmvc:4.0.0.RELEASE'
-    compile 'org.springframework:spring-orm:4.0.0.RELEASE'
+	compile 'org.springframework:spring-context:4.0.0.RELEASE'
+	compile 'org.springframework:spring-core:4.0.0.RELEASE'
+	compile 'org.springframework:spring-jdbc:4.0.0.RELEASE'
+	compile 'org.springframework:spring-webmvc:4.0.0.RELEASE'
+	compile 'org.springframework:spring-orm:4.0.0.RELEASE'
     
-    compile 'jstl:jstl:1.2'
+	compile 'jstl:jstl:1.2'
     
-    compile 'postgresql:postgresql:9.1-901.jdbc4'
-    compile 'org.hibernate:hibernate-validator:4.3.1.Final'
+	runtime 'postgresql:postgresql:9.1-901.jdbc4'
+	runtime 'mysql:mysql-connector-java:5.1.18'
+	compile 'org.hibernate:hibernate-validator:4.3.1.Final'
 
 	compile 'org.apache.commons:commons-lang3:3.1'
 	compile 'org.apache.commons:commons-io:1.3.2'
 	
 	compile 'org.apache.tomcat:tomcat-dbcp:7.0.50'
 	compile 'org.hibernate:hibernate-core:4.3.0.Final'
-	
+	compile 'opensymphony:sitemesh:2.4.2'
+}
+            
+
+configurations {
+	provided
+}
+
+sourceSets {
+	main { compileClasspath += configurations.provided }
+}
+
+eclipse {
+
+  //if you want parts of paths in resulting file(s) to be replaced by variables (files):
+  pathVariables 'TOMCAT_HOME': file('/opt/tomcat7')
+
+  classpath {
+     plusConfigurations += configurations.provided
+     noExportConfigurations += configurations.provided 
+  }
+    
+  wtp {
+    component {
+       minusConfigurations += configurations.provided
+    }
+
+    facet {
+         facet name: 'java', version: '1.7'
+         facet name: 'jst.web', version: '3.0'
+         facet name: 'wst.jsdt.web', version: '1.0'
+     }
+  }
 }
 
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.10'
 }
-
-

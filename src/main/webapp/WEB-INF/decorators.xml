@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+	<excludes>
+		<pattern>*/resources/*</pattern>
+	</excludes>
+
+	<decorator name="main-theme" page="main-theme.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+		
+</decorators>

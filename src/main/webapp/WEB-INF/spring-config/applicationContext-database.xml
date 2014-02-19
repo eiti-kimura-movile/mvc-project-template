@@ -58,14 +58,14 @@
 		<property name="packagesToScan">
 			<list>
 				<value>
-					com.movile.treinamento.model.entity
+					com.movile.project.model.entity
 				</value>
 			</list>
 		</property>
 
 		<property name="annotatedClasses">
 			<list>
-				<value>com.movile.treinamento.model.entity.Employee
+				<value>com.movile.project.model.entity.Employee
 				</value>
 			</list>
 		</property>
