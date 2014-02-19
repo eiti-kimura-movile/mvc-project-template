@@ -6,7 +6,7 @@ import com.movile.project.model.entity.Employee;
 
 public interface EmployeeBO {
 
-    void createEmployee(Employee employee);
+    void save(Employee employee);
     
     List<Employee> getEmployees();
     

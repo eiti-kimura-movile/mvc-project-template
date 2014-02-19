@@ -21,7 +21,7 @@ public class EmployeeDAOHibernate implements EmployeeDAO {
 	@Override
 	public void save(Employee employee) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(employee);
+		session.saveOrUpdate(employee);
 	}
 
 	@Override

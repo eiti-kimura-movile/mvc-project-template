@@ -14,7 +14,6 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
 		<property name="dataSource" ref="dataSourceTemplate" />
 	</bean>
@@ -37,7 +36,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQL5Dialect
+					org.hibernate.dialect.PostgreSQLDialect
 				</prop>
 				<prop key="hibernate.show_sql">
 					${hibernate.show_query}

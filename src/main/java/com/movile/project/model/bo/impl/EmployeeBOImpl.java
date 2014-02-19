@@ -20,9 +20,8 @@ public class EmployeeBOImpl implements EmployeeBO {
 	private EmployeeDAO employeeDAO;
 
 	@Override
-	public void createEmployee(Employee employee) {
+	public void save(Employee employee) {
 		employeeDAO.save(employee);
-
 	}
 
 
@@ -35,7 +34,6 @@ public class EmployeeBOImpl implements EmployeeBO {
 
 	@Override
 	public Employee getEmployee(Long id) {
-		
 		return employeeDAO.findById(id);
 	}
 

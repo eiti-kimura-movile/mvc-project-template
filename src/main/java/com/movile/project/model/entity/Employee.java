@@ -10,6 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity(name="employee")
 public class Employee implements Serializable {
@@ -20,14 +27,19 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(min=3, max=100)
     @Column
     private String name;
 
+    @NotEmpty @Email
     @Column
     private String email;
 
-    @Column(name = "birthdate")
+    @Column(name = "birth_date")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @NotNull @Past
     private Date birthDate;
     
     @Column(name = "department")
