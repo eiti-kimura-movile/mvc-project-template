@@ -3,7 +3,6 @@ package com.movile.project.web.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -49,17 +48,11 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/new", method = { RequestMethod.GET })
 	public String newEmployee(ModelMap modelMap) {
-
+		
 		Employee employee = new Employee();
-
-		employee.setName("Teste");
-		employee.setEmail("teste");
-		employee.setBirthDate(new Date());
-
-		employeeBO.save(employee);
-
-		modelMap.addAttribute("employee", new Employee());
-
+		employee.setId(0L);
+		
+		modelMap.addAttribute("emp", employee);
 		return "employee/form";
 	}
 
@@ -73,12 +66,14 @@ public class EmployeeController {
 	@RequestMapping(value = "/{id}/save", method = { RequestMethod.POST })
 	public String save(@Valid @ModelAttribute("emp") Employee emp, BindingResult bindingResult, Model model, @PathVariable("id") Long id) {
 		
+		// check for validation errors
 		if (bindingResult.hasErrors()) {
 			return "employee/form";
 		}
 		
-        if (id != null) {
-        	emp.setId(id);
+		// means a new entity
+        if (id.equals(0L)) {
+        	emp.setId(null);
 		}
         
 	    employeeBO.save(emp);

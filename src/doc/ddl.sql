@@ -1,3 +1,5 @@
+CREATE DATABASE midb;
+
 CREATE TABLE employee (
   id SERIAL,
   name varchar(255) default NULL,
@@ -6,7 +8,6 @@ CREATE TABLE employee (
   department varchar(255) default NULL,
   PRIMARY KEY(id)
 );
-
 
 INSERT INTO employee ( name , birth_date , email , department ) VALUES ('Solomon Simon','1985-10-08 08:48:32','nibh.lacinia.orci@vulputatenisi.co.uk','Research and Development');
 INSERT INTO employee ( name , birth_date , email , department ) VALUES ('Dolan Crosby','1993-10-04 03:53:21','tellus.Phasellus@leo.net','Human Resources');

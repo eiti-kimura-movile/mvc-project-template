@@ -17,7 +17,7 @@
 	<br />
 	<div class="panel panel-default">
 
-		<form:form role="form" style="padding: 20px 20px" action="${pageContext.request.contextPath}/employee/${emp.id}/save" modelAttribute="emp">
+		<form:form role="form" style="padding: 20px 20px" action="${pageContext.request.contextPath}/employee/${emp.id}/save" modelAttribute="emp" enctype="">
 			  <c:if test="${SUCCESS_MESSAGE eq true}">
 	            <div class="alert alert-success">${emp.name} <spring:message code="emp.persist.success"/></div>
 	          </c:if>

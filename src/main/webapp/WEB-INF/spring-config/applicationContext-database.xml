@@ -14,9 +14,29 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
+	<!-- bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
 		<property name="dataSource" ref="dataSourceTemplate" />
+	</bean-->
+
+
+	<!-- DataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxActive" value="3" />
+		<property name="maxIdle" value="2" />
+		<property name="minIdle" value="1" />
+		<property name="initialSize" value="1" />
+		<property name="maxWait" value="10" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testWhileIdle" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="validationQuery" value="select 1" />
+		<!--beans:property name="timeout" value="${timeout}" / -->
 	</bean>
+
 
 	<!-- Spring JDBC template -->
 	<bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">

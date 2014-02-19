@@ -17,8 +17,10 @@
 	<br />
 	<div class="panel panel-default">
 		<!-- Default panel contents -->
-		<div class="panel-heading"><spring:message code="emp.list.message"/> ${fn:length(list)}</div>
-
+		<div class="panel-heading">
+		    <a href="<c:url value="/employee/new"/>" class="btn btn-primary" role="button"><spring:message code="emp.new" text="New Employee"/></a> &nbsp;
+		    <spring:message code="emp.list.message"/> ${fn:length(list)}
+		</div>
 		<table class="table table-hover">
 			<thead>
 				<tr>
