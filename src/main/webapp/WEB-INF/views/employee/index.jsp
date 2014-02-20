@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@
 		<!-- Default panel contents -->
 		<div class="panel-heading">
 		    <a href="<c:url value="/employee/new"/>" class="btn btn-primary" role="button"><spring:message code="emp.new" text="New Employee"/></a> &nbsp;
-		    <spring:message code="emp.list.message"/> ${fn:length(list)}
+		    <spring:message code="emp.list.message"/> ${fn:length(list)} - ${pageContext.response.locale}
 		</div>
 		<table class="table table-hover">
 			<thead>

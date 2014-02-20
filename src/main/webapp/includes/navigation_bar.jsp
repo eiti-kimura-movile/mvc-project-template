@@ -14,9 +14,8 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li id="home"><a href="<c:url value="/"/>"><spring:message code="mnu.home"/></a></li>
             <li id="emp"><a href="<c:url value="/employee"/>"><spring:message code="mnu.emp"/></a></li>
-            <li id="about"><a href="/about"><spring:message code="mnu.about"/></a></li>
+            <li id="about"><a href="<c:url value="/about"/>"><spring:message code="mnu.about"/></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

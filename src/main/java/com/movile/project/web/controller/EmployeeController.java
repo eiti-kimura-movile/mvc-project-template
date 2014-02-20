@@ -3,6 +3,7 @@ package com.movile.project.web.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.RequestContext;
 
 import com.movile.project.model.bo.EmployeeBO;
 import com.movile.project.model.entity.Employee;
@@ -64,7 +66,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/{id}/save", method = { RequestMethod.POST })
-	public String save(@Valid @ModelAttribute("emp") Employee emp, BindingResult bindingResult, Model model, @PathVariable("id") Long id) {
+	public String save(RequestContext context, @Valid @ModelAttribute("emp") Employee emp, BindingResult bindingResult, Model model, @PathVariable("id") Long id) {
 		
 		// check for validation errors
 		if (bindingResult.hasErrors()) {

@@ -3,7 +3,6 @@ package com.movile.project.model.bo.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ import com.movile.project.model.entity.Employee;
 public class EmployeeBOImpl implements EmployeeBO {
 
 	@Autowired
-	@Qualifier("daohibernate")
+	//@Qualifier("daohibernate")
 	private EmployeeDAO employeeDAO;
 
 	@Override

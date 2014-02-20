@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.movile.project.model.dao.EmployeeDAO;
 import com.movile.project.model.entity.Employee;
 
-@Repository("daohibernate")
+@Repository
 public class EmployeeDAOHibernate implements EmployeeDAO {
 
 	@Autowired

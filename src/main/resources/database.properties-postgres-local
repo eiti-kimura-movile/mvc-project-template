@@ -1,0 +1,4 @@
+jdbc.url=jdbc:postgresql://192.168.217.11:5432/midb
+jdbc.username=postgres
+jdbc.password=postgres
+jdbc.driverClassName=org.postgresql.Driver

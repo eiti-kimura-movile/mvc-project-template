@@ -11,11 +11,16 @@ public class MainController {
 
 	@RequestMapping(value = "", method = { RequestMethod.GET })
 	public String root(ModelMap modelMap) {
-		return "index";
+		return "redirect:employee";
 	}
 
 	@RequestMapping(value = "index", method = { RequestMethod.GET })
 	public String index(ModelMap modelMap) {
-		return "index";
+		return "redirect:employee";
+	}
+	
+	@RequestMapping(value = "about", method = { RequestMethod.GET })
+	public String about() {
+		return "about_page";
 	}
 }

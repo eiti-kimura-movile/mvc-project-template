@@ -23,4 +23,10 @@
 	<context:property-placeholder location="classpath:*.properties"
 		ignore-unresolvable="true" />
 
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	</mvc:interceptors>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
 </beans>
