@@ -2,19 +2,23 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 	<!-- Properties -->
 	<bean id="databaseProperties"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
-			<value>classpath:database.properties</value>
+			<value>classpath:database-dev.properties</value>
 		</property>
-		<property name="ignoreUnresolvablePlaceholders"
-			value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
-	
+
 	<!-- DataSource -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -67,9 +71,9 @@
 					UTF-8
 				</prop>
 				<prop key="hibernate.max_fetch_depth">4</prop>
-				
+
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
-				
+
 				<prop key="hibernate.default_schema">midb</prop>
 			</props>
 		</property>

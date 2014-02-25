@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity(name="person")
+@Entity(name="employee")
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = -8719816199030337457L;
@@ -32,7 +32,8 @@ public class Employee implements Serializable {
     @Column
     private String name;
 
-    @NotEmpty @Email
+    @NotEmpty 
+    @Email
     @Column
     private String email;
 
@@ -44,7 +45,10 @@ public class Employee implements Serializable {
     
     @Column(name = "department")
     private String department;
-
+    
+    //@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    //private List<Document> documents;
+    
     public Long getId() {
         return id;
     }

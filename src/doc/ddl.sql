@@ -1,4 +1,5 @@
-CREATE DATABASE midb;
+-- CREATE DATABASE midb;
+CREATE SCHEMA midb;
 
 CREATE TABLE employee (
   id SERIAL,

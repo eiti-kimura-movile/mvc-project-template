@@ -14,7 +14,7 @@ import com.movile.project.model.entity.Employee;
 @Transactional(readOnly = false)
 public class EmployeeBOImpl implements EmployeeBO {
 
-	@Autowired
+	@Autowired(required=true)
 	//@Qualifier("daohibernate")
 	private EmployeeDAO employeeDAO;
 
