@@ -3,10 +3,10 @@ package com.movile.project.web.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.MessageSource;
@@ -68,6 +68,8 @@ public class EmployeeController {
 	@RequestMapping(value = "/{id}/save", method = { RequestMethod.POST })
 	public String save(RequestContext context, @Valid @ModelAttribute("emp") Employee emp, BindingResult bindingResult, Model model, @PathVariable("id") Long id) {
 		
+		Employee employee = null;
+		
 		// check for validation errors
 		if (bindingResult.hasErrors()) {
 			return "employee/form";
@@ -76,10 +78,19 @@ public class EmployeeController {
 		// means a new entity
         if (id.equals(0L)) {
         	emp.setId(null);
+        	employee = emp; // new record
+		} else {
+			// overwrite the original data
+			employee = employeeBO.getEmployee(emp.getId());
+			if (employee != null) {
+				 // copy all properties except the documents set
+				 BeanUtils.copyProperties(emp, employee, new String[] {"documents"});
+			}
 		}
-        
-	    employeeBO.save(emp);
+       
+	    employeeBO.save(employee);
         model.addAttribute("SUCCESS_MESSAGE", true);
+        model.addAttribute("emp", employee);
 	    
 		return "employee/form";
 	}

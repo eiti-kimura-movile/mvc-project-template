@@ -45,6 +45,27 @@
 			  <button type="submit" class="btn btn-primary"><spring:message code="emp.edit.submit"/></button>
 			  <a href="<c:url value="/employee"/>" class="btn btn-default" role="button"><spring:message code="emp.edit.back"/></a>
 		</form:form>
+		
+		<table class="table table-condensed">
+	      <thead>
+	        <tr>
+	          <th>#</th>
+	          <th>Description</th>
+	          <th>Document Value</th>
+	          <th>Details</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      <c:forEach items="${emp.documents}" var="doc">
+	        <tr>
+	          <td>${doc.id}</td>
+	          <td>${doc.name}</td>
+	          <td>${doc.value}</td>
+	          <td>edt</td>
+	        </tr>
+	      </c:forEach>
+	      </tbody>
+	    </table>
 	</div>
 
     <script src="https://code.jquery.com/jquery.js"></script>

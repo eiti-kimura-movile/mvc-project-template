@@ -25,6 +25,10 @@
 
 	<mvc:interceptors>
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+		<mvc:interceptor>
+		<mvc:mapping path="/**" />
+			<ref bean="openSessionInViewInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<bean id="localeResolver"
