@@ -36,6 +36,8 @@ public class EmployeeDAOTest {
 		Assert.assertNotNull(emp.getName());
 		Assert.assertNotNull(emp.getDepartment());
 		Assert.assertNotNull(emp.getBirthDate());
+		Assert.assertNotNull(emp.getDocuments());
+		Assert.assertTrue(emp.getDocuments().size() > 0);
 		Assert.assertEquals(new Long(1L), emp.getId());
 	}
 }

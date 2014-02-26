@@ -2,18 +2,23 @@ package com.movile.project.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -46,8 +51,10 @@ public class Employee implements Serializable {
     @Column(name = "department")
     private String department;
     
-    //@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
-    //private List<Document> documents;
+    @OneToMany
+    @JoinColumn(name="employee_id")
+    @Cascade({CascadeType.ALL})
+    private Set<Document> documents;
     
     public Long getId() {
         return id;
@@ -87,6 +94,15 @@ public class Employee implements Serializable {
 
 	public void setDepartment(String department) {
 		this.department = department;
+	}
+
+	
+	public Set<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Set<Document> documents) {
+		this.documents = documents;
 	}
 
 	@Override

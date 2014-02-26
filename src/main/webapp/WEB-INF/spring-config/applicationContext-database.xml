@@ -84,8 +84,8 @@
 
 		<property name="annotatedClasses">
 			<list>
-				<value>com.movile.project.model.entity.Employee
-				</value>
+				<value>com.movile.project.model.entity.Employee</value>
+				<value>com.movile.project.model.entity.Document</value>
 			</list>
 		</property>
 	</bean>

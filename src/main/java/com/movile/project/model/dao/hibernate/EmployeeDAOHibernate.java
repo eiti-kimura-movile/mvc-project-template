@@ -2,8 +2,6 @@ package com.movile.project.model.dao.hibernate;
 
 import java.util.List;
 
-import javax.print.attribute.standard.MediaSize.NA;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,9 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import com.movile.project.model.dao.EmployeeDAO;
 import com.movile.project.model.entity.Employee;
-import com.sun.org.apache.xml.internal.utils.NSInfo;
 
-@Repository(value="employeeDAOHibernate")
+@Repository
 public class EmployeeDAOHibernate implements EmployeeDAO {
 
 	@Autowired

@@ -59,10 +59,10 @@
 					org.hibernate.dialect.PostgreSQLDialect
 				</prop>
 				<prop key="hibernate.show_sql">
-					${hibernate.show_query}
+					true
 				</prop>
 				<prop key="hibernate.format_sql">
-					${hibernate.show_query}
+					true
 				</prop>
 				<prop key="hibernate.connection.useUnicode">
 					true
@@ -88,8 +88,8 @@
 
 		<property name="annotatedClasses">
 			<list>
-				<value>com.movile.project.model.entity.Employee
-				</value>
+				<value>com.movile.project.model.entity.Employee</value>
+				<value>com.movile.project.model.entity.Document</value>
 			</list>
 		</property>
 	</bean>
