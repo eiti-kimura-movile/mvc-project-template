@@ -46,13 +46,16 @@
 			  <a href="<c:url value="/employee"/>" class="btn btn-default" role="button"><spring:message code="emp.edit.back"/></a>
 		</form:form>
 		
+		<div class="panel-heading">
+		   <spring:message code="emp.doc.title"/>
+		</div>
 		<table class="table table-condensed">
 	      <thead>
 	        <tr>
 	          <th>#</th>
-	          <th>Description</th>
-	          <th>Document Value</th>
-	          <th>Details</th>
+	          <th><spring:message code="emp.doc.desc"/></th>
+	          <th><spring:message code="emp.doc.value"/></th>
+	          <th><spring:message code="emp.doc.det"/></th>
 	        </tr>
 	      </thead>
 	      <tbody>
