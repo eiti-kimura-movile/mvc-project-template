@@ -1,4 +1,0 @@
-jdbc.url=jdbc:postgresql://ec2-174-129-219-7.compute-1.amazonaws.com:5472/dbuqfv3r3kv5kt?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
-jdbc.username=uch3g0avqcqq21
-jdbc.password=p37lfqmsbd2kloqr7c91g2ilvb
-jdbc.driverClassName=org.postgresql.Driver
