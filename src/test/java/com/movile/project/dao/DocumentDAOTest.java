@@ -1,6 +1,6 @@
 package com.movile.project.dao;
 
-import java.util.Set;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,7 +29,7 @@ public class DocumentDAOTest {
 	@Transactional
 	public void findByEmployee() {
 		Employee emp = employeeDAO.findById(1L);
-		Set<Document> set = emp.getDocuments();
+		List<Document> set = emp.getDocuments();
 		Assert.assertNotNull(set);
 		Assert.assertTrue(set.size() > 0);
 	}

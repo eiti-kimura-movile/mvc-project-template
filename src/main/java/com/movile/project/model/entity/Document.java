@@ -2,92 +2,128 @@ package com.movile.project.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * @author J.P. Eiti Kimura (eiti.kimura@movile.com)
  */
-@Entity(name="document")
+@Entity(name = "document")
 public class Document implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@NotNull
-    @Size(min=1, max=255)
+    private Long id;
+
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column
-	private String name;
-	
-	@NotNull
-    @Size(min=1, max=255)
-    @Column(name="document_value")
-	private String value;
-	
-	public Document() {
-		
-	}
+    private String name;
 
-	public Long getId() {
-		return id;
-	}
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "document_value")
+    private String value;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @ManyToOne
+    private Employee employee;
 
-	public String getName() {
-		return name;
-	}
+    public Document() {
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    }
 
-	public String getValue() {
-		return value;
-	}
+    public Document(String name, String value) {
+        super();
+        this.name = name;
+        this.value = value;
+    }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public Document(String name, String value, Employee employee) {
+        super();
+        this.name = name;
+        this.value = value;
+        this.employee = employee;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Document other = (Document) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
 
-	@Override
-	public String toString() {
-		return "Document [id=" + id + ", name=" + name + ", value=" + value + "]";
-	}
+    public Employee getEmployee() {
+        return employee;
+    }
+
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Document other = (Document) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Document [id=" + id + ", name=" + name + ", value=" + value + ", employee=" + employee + "]";
+    }
 
 }

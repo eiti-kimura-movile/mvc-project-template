@@ -59,7 +59,7 @@
 					org.hibernate.dialect.PostgreSQLDialect
 				</prop>
 				<prop key="hibernate.show_sql">
-					true
+					false
 				</prop>
 				<prop key="hibernate.format_sql">
 					true
@@ -75,6 +75,8 @@
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 
 				<prop key="hibernate.default_schema">midb</prop>
+				
+				<prop key="hibernate.connection.release_mode">after_transaction</prop>
 			</props>
 		</property>
 

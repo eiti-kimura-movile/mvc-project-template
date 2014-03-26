@@ -23,11 +23,14 @@ public class EmployeeDAOHibernate implements EmployeeDAO {
 	public void save(Employee employee) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(employee);
+		session.merge(employee);
 	}
 
 	@Override
 	public void delete(Employee employee) {
-		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(employee);
+		session.flush();
 
 	}
 

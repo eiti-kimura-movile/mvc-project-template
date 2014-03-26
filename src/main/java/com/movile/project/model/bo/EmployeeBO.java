@@ -11,5 +11,7 @@ public interface EmployeeBO {
     List<Employee> getEmployees();
     
     Employee getEmployee(Long id);
+
+	void remove(Employee employee);
     
 }

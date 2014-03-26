@@ -45,7 +45,9 @@
 						    <a href="<c:url value="employee/${emp.id}/edit"/>">
 						      <span class="glyphicon glyphicon-pencil" title="<spring:message code="emp.basic.edit.tip"/>"/>
 						    </a>
-						    <span class="glyphicon glyphicon-phone-alt" title="<spring:message code="emp.contact.edit.tip"/>"/>
+						    <a href="<c:url value="employee/${emp.id}/remove"/>">
+						      <span class="glyphicon glyphicon-phone-alt" title="<spring:message code="emp.contact.edit.tip"/>"/>
+						    </a>
 						    <span class="glyphicon glyphicon-folder-open" title="<spring:message code="emp.docs.edit.tip"/>"/>
 						</td>
 					</tr>

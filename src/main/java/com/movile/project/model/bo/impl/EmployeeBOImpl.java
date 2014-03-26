@@ -36,4 +36,10 @@ public class EmployeeBOImpl implements EmployeeBO {
 		return employeeDAO.findById(id);
 	}
 
+
+	@Override
+	public void remove(Employee employee) {
+		employeeDAO.delete(employee);
+	}
+
 }

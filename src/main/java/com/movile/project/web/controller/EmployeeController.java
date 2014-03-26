@@ -2,10 +2,13 @@ package com.movile.project.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.junit.Assert;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -23,76 +26,111 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.RequestContext;
 
 import com.movile.project.model.bo.EmployeeBO;
+import com.movile.project.model.entity.Document;
 import com.movile.project.model.entity.Employee;
 
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
-	
-	@Autowired
-	private EmployeeBO employeeBO;
 
-	@Autowired
-	private MessageSource messageSource;
-	
-	@InitBinder
-	public void registerBinders(WebDataBinder binder) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-	    binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
-	}
-	
-	@RequestMapping(value = "", method = { RequestMethod.GET })
-	public String index(ModelMap modelMap) {
-		List<Employee> list = employeeBO.getEmployees();
-		modelMap.addAttribute("list", list);
-		return "employee/index";
-	}
+    @Autowired
+    private EmployeeBO employeeBO;
 
-	@RequestMapping(value = "/new", method = { RequestMethod.GET })
-	public String newEmployee(ModelMap modelMap) {
-		
-		Employee employee = new Employee();
-		employee.setId(0L);
-		
-		modelMap.addAttribute("emp", employee);
-		return "employee/form";
-	}
+    @Autowired
+    private MessageSource messageSource;
 
-	@RequestMapping(value = "/{id}/edit", method = { RequestMethod.GET })
-	public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
-		Employee employee = employeeBO.getEmployee(id);
-		modelMap.addAttribute("emp", employee);
-		return "employee/form";
-	}
+    @InitBinder
+    public void registerBinders(WebDataBinder binder) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+    }
 
-	@RequestMapping(value = "/{id}/save", method = { RequestMethod.POST })
-	public String save(RequestContext context, @Valid @ModelAttribute("emp") Employee emp, BindingResult bindingResult, Model model, @PathVariable("id") Long id) {
-		
-		Employee employee = null;
-		
-		// check for validation errors
-		if (bindingResult.hasErrors()) {
-			return "employee/form";
-		}
-		
-		// means a new entity
+    @RequestMapping(value = "", method = {RequestMethod.GET})
+    public String index(ModelMap modelMap) {
+        List<Employee> list = employeeBO.getEmployees();
+        modelMap.addAttribute("list", list);
+        return "employee/index";
+    }
+
+    @RequestMapping(value = "/test", method = {RequestMethod.GET})
+    public String test(ModelMap modelMap) {
+
+        Employee employee = new Employee();
+        employee.setBirthDate(new Date());
+        employee.setDepartment("Development");
+        employee.setName("Test Employee");
+        employee.setEmail("test.employee@movile.com");
+
+        Set<Document> documents = new HashSet<Document>();
+        documents.add(new Document("RG", "34124559852", employee));
+        documents.add(new Document("CPF", "123123143253-23", employee));
+
+        //employee.setDocuments(documents);
+        employeeBO.save(employee);
+        
+        Assert.assertNotNull(employee.getId());
+        Employee emp = employeeBO.getEmployee(employee.getId());
+        
+        // erase
+        employee.getDocuments().clear();
+        employeeBO.save(employee);
+        emp = employeeBO.getEmployee(employee.getId());
+
+        return "redirect:employee";
+    }
+
+    @RequestMapping(value = "/new", method = {RequestMethod.GET})
+    public String newEmployee(ModelMap modelMap) {
+
+        Employee employee = new Employee();
+        employee.setId(0L);
+
+        modelMap.addAttribute("emp", employee);
+        return "employee/form";
+    }
+
+    @RequestMapping(value = "/{id}/edit", method = {RequestMethod.GET})
+    public String edit(@PathVariable("id") Long id, ModelMap modelMap) {
+        Employee employee = employeeBO.getEmployee(id);
+        modelMap.addAttribute("emp", employee);
+        return "employee/form";
+    }
+
+    @RequestMapping(value = "/{id}/remove", method = {RequestMethod.GET})
+    public String remove(@PathVariable("id") Long id, ModelMap modelMap) {
+        Employee employee = employeeBO.getEmployee(id);
+        employeeBO.remove(employee);
+        return "redirect:employee";
+    }
+
+    @RequestMapping(value = "/{id}/save", method = {RequestMethod.POST})
+    public String save(RequestContext context, @Valid @ModelAttribute("emp") Employee emp, BindingResult bindingResult, Model model, @PathVariable("id") Long id) {
+
+        Employee employee = null;
+
+        // check for validation errors
+        if (bindingResult.hasErrors()) {
+            return "employee/form";
+        }
+
+        // means a new entity
         if (id.equals(0L)) {
-        	emp.setId(null);
-        	employee = emp; // new record
-		} else {
-			// overwrite the original data
-			employee = employeeBO.getEmployee(emp.getId());
-			if (employee != null) {
-				 // copy all properties except the documents set
-				 BeanUtils.copyProperties(emp, employee, new String[] {"documents"});
-			}
-		}
-       
-	    employeeBO.save(employee);
+            emp.setId(null);
+            employee = emp; // new record
+        } else {
+            // overwrite the original data
+            employee = employeeBO.getEmployee(emp.getId());
+            if (employee != null) {
+                // copy all properties except the documents set
+                BeanUtils.copyProperties(emp, employee, new String[] {"documents"});
+            }
+        }
+
+        employeeBO.save(employee);
         model.addAttribute("SUCCESS_MESSAGE", true);
         model.addAttribute("emp", employee);
-	    
-		return "employee/form";
-	}
+
+        return "employee/form";
+    }
 
 }
