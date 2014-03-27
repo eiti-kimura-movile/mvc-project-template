@@ -16,53 +16,58 @@ import com.movile.project.model.entity.Employee;
 @Repository
 public class EmployeeDAOHibernate implements EmployeeDAO {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	@Override
-	public void save(Employee employee) {
-		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(employee);
-		session.merge(employee);
-	}
+    @Override
+    public void save(Employee employee) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(employee);
+    }
 
-	@Override
-	public void delete(Employee employee) {
-		Session session = sessionFactory.getCurrentSession();
-		session.delete(employee);
-		session.flush();
+    @Override
+    public void delete(Employee employee) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(employee);
+        session.flush();
 
-	}
+    }
 
-	@Override
-	public Employee findById(Long id) {
-		Object entity = sessionFactory.getCurrentSession().get(Employee.class, id);
-		return entity != null ? (Employee) entity : null;
-	}
+    @Override
+    public Employee findById(Long id) {
+        Object entity = sessionFactory.getCurrentSession().get(Employee.class, id);
+        return entity != null ? (Employee) entity : null;
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<Employee> getAll() {
-		Session session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(Employee.class);
-		criteria.addOrder(Order.asc("id"));
-		return criteria.list();
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Employee> getAll() {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Employee.class);
+        criteria.addOrder(Order.asc("id"));
+        return criteria.list();
+    }
 
-	@Override
-	public void update(Employee employee) {
-		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(employee);
-	}
+    @Override
+    public void update(Employee employee) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(employee);
+    }
 
-	@Override
-	public Employee findByEmail(String email) {
-		Session session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(Employee.class);
+    @Override
+    public Employee findByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Employee.class);
 
         criteria.setCacheable(true);
         criteria.add(Restrictions.eq("email", email));
         return (Employee) criteria.uniqueResult();
-	}
+    }
+
+    @Override
+    public Employee merge(Employee employee) {
+        Session session = sessionFactory.getCurrentSession();
+        return (Employee) session.merge(employee);
+    }
 
 }

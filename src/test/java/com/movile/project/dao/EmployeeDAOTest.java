@@ -67,7 +67,7 @@ public class EmployeeDAOTest {
         Assert.assertNotNull(emp.getDocuments());
         
         employee.getDocuments().clear();
-        employeeDAO.save(employee);
+        employeeDAO.merge(employee);
         
         emp = employeeDAO.findById(employee.getId());
         Assert.assertNotNull(emp);

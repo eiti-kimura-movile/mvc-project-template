@@ -6,6 +6,8 @@ import com.movile.project.model.entity.Employee;
 
 public interface EmployeeDAO {
 
+    Employee merge(Employee employee);
+    
     void save(Employee employee);
     
     void update(Employee employee);
