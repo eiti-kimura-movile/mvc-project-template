@@ -92,6 +92,7 @@
 			<list>
 				<value>com.movile.project.model.entity.Employee</value>
 				<value>com.movile.project.model.entity.Document</value>
+				<value>com.movile.project.model.entity.Project</value>
 			</list>
 		</property>
 	</bean>

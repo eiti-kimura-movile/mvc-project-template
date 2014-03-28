@@ -40,7 +40,7 @@ public class EmployeeController {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
     }
-
+    
     @RequestMapping(value = "", method = {RequestMethod.GET})
     public String index(ModelMap modelMap) {
         List<Employee> list = employeeBO.getEmployees();

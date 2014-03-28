@@ -13,6 +13,22 @@ CREATE TABLE midb.employee (
   PRIMARY KEY(id)
 );
 
+CREATE TABLE midb.project_resource (
+	employee_id bigint not null,
+	project_id bigint not null,
+	PRIMARY KEY (employee_id, project_id)
+)
+
+CREATE TABLE midb.project (
+  id SERIAL,
+  name varchar(50) not null,
+  description varchar(255) default null,
+  start_date timestamp,
+  end_date timestamp,
+  finished boolean default false,
+  PRIMARY KEY(id)
+);
+
 CREATE TABLE midb.document (
   id SERIAL,
   name varchar(255) default NULL,
