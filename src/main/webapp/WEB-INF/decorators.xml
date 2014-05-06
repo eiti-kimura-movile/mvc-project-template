@@ -2,6 +2,7 @@
 <decorators defaultdir="/decorators">
 	<excludes>
 		<pattern>*/resources/*</pattern>
+        <pattern>*/api/*</pattern>
 	</excludes>
 
 	<decorator name="main-theme" page="main-theme.jsp">

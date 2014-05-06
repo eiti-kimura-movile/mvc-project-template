@@ -56,7 +56,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">
-					org.hibernate.dialect.PostgreSQLDialect
+					org.hibernate.dialect.MySQL5InnoDBDialect
 				</prop>
 				<prop key="hibernate.show_sql">
 					false
@@ -74,7 +74,7 @@
 
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 
-				<prop key="hibernate.default_schema">midb</prop>
+				<!--prop key="hibernate.default_schema">midb</prop-->
 				
 				<prop key="hibernate.connection.release_mode">after_transaction</prop>
 			</props>

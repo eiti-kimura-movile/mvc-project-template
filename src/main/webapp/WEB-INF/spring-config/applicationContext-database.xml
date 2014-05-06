@@ -21,7 +21,7 @@
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
-		<property name="maxActive" value="3" />
+		<property name="maxActive" value="10" />
 		<property name="maxIdle" value="2" />
 		<property name="minIdle" value="1" />
 		<property name="initialSize" value="1" />
@@ -52,7 +52,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">
-					org.hibernate.dialect.PostgreSQLDialect
+					org.hibernate.dialect.MySQLInnoDBDialect
 				</prop>
 				<prop key="hibernate.show_sql">
 					${hibernate.show_query}
@@ -68,9 +68,8 @@
 				</prop>
 				<prop key="hibernate.max_fetch_depth">4</prop>
 				
-				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
-				
-				<prop key="hibernate.default_schema">midb</prop>
+				<!--prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop-->
+				<!--prop key="hibernate.default_schema">midb</prop-->
 			</props>
 		</property>
 
@@ -87,6 +86,7 @@
 				<value>com.movile.project.model.entity.Employee</value>
 				<value>com.movile.project.model.entity.Document</value>
 				<value>com.movile.project.model.entity.Project</value>
+                <value>com.movile.project.model.entity.Worklog</value>
 			</list>
 		</property>
 	</bean>

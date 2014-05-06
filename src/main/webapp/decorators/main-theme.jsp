@@ -46,7 +46,7 @@
 		</div>
 		
 		<div class="footer">
-		<div style="display: inline">© Movile <fmt:formatDate value="${now}" pattern="yyyy" /></div>
+		<div style="display: inline">© Company  <fmt:formatDate value="${now}" pattern="yyyy" /></div>
 		<div style="display: inline; float: right;">
 			<ul class="list-inline">
 				<li><a href="?locale=en">English</a></li>

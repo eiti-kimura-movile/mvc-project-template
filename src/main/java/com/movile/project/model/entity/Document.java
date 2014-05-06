@@ -1,18 +1,11 @@
 package com.movile.project.model.entity;
 
-import java.io.Serializable;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * @author J.P. Eiti Kimura (eiti.kimura@movile.com)
@@ -36,7 +29,7 @@ public class Document implements Serializable {
     @Column(name = "document_value")
     private String value;
 
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.REFRESH)
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.DETACH)
     @JoinColumn(name="employee_id")
     private Employee employee;
 
@@ -58,7 +51,7 @@ public class Document implements Serializable {
         this.employee = employee;
     }
 
-
+    @JsonIgnore
     public Employee getEmployee() {
         return employee;
     }
