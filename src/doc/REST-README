@@ -1,0 +1,8 @@
+record hour:
+http://localhost:8080/mvc-project/api/employee/1/worklog/1/?hour=2
+
+show employee information:
+http://localhost:8080/mvc-project/api/employee/1
+
+show all employees and relations
+http://localhost:8080/mvc-project/api/employee
